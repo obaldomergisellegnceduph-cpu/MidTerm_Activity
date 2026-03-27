@@ -1,0 +1,68 @@
+# Initialize variables
+total = 0
+entries = []  # To store all user entries for the summary
+
+# Main loop to keep program running (while loop)
+while True:
+    user_input = input("Enter a number (or type 'stop' to quit): ")
+    
+    # Check if user wants to stop
+    if user_input.lower() == "stop":
+        print("\nYou typed 'stop'. The program is ending!\n")
+        break
+    
+    # Try converting input to integer (handle non-number entries gracefully)
+    try:
+        number = int(user_input)
+    except ValueError:
+        print("Please enter a valid number or 'stop'.\n")
+        continue
+    
+    # Handle reset to zero
+    if number == 0:
+        total = 0
+        entries.append((number, "Zero (total reset)"))
+        print(f"0 → Total reset to 0\n  Running total: {total}\n")
+        continue
+    
+    # Check even/odd and update total
+    if number % 2 == 0:
+        total += number
+        entry_type = "Even (was added)"
+        print(f"{number} is EVEN → Added.   Running total: {total}\n")
+    else:
+        total -= number
+        entry_type = "Odd (was subtracted)"
+        print(f"{number} is ODD  → Subtracted.   Running total: {total}\n")
+    
+    # Store entry for summary
+    entries.append((number, entry_type))
+
+# Display summary using a for loop
+print("--- Summary of all numbers you entered ---")
+for num, desc in entries:
+    print(f"  {num}  →  {desc}")
+
+print(f"\nFinal Total: {total}")
+
+
+
+
+Enter a number (or type 'stop' to quit): 7
+7 is ODD  → Subtracted.   Running total: -7
+
+Enter a number (or type 'stop' to quit): 14
+14 is EVEN → Added.   Running total: 7
+
+Enter a number (or type 'stop' to quit): 0
+0 → Total reset to 0
+  Running total: 0
+
+Enter a number (or type 'stop' to quit): 23
+23 is ODD  → Subtracted.   Running total: -23
+
+Enter a number (or type 'stop' to quit): 46
+46 is EVEN → Added.   Running total: 23
+
+Enter a number (or type 'stop' to quit): 
+** Process Stopped **
